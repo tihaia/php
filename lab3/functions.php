@@ -47,6 +47,36 @@ function findTransactionById(array $transactions, int $id): ?array {
     return null; // Если не нашли, возвращаем null
 }
 
+/**
+ * Summary of daysSinceTransaction
+ * @param DateTime $date
+ * @return int
+ */
+function daysSinceTransaction(DateTime $date): int {
+    $currentDate = new DateTime();
+    return $date->diff($currentDate)->days;
+}
+
+/**
+ * Summary of addTransaction
+ * @param int $id
+ * @param string $date
+ * @param float $amount
+ * @param string $description
+ * @param string $merchant
+ * @return void
+ */
+function addTransaction(int $id, string $date, float $amount, string $description, string $merchant): void {
+    global $transactions;
+
+    $transactions[] = [
+        "id" => $id,
+        "date" => new DateTime($date),
+        "amount" => $amount,
+        "description" => $description,
+        "merchant" => $merchant,
+    ];
+}
 
 /**
  * Summary of sortTransactionsByDate
