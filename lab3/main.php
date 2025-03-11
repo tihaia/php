@@ -22,6 +22,7 @@ require_once 'transactions.php';
                 <th>Total amount</th>
                 <th>Description</th>
                 <th>Merchant</th>
+                <th>Amount of passed days</th>
             </tr>
         </thead>
         <tbody>
@@ -32,6 +33,7 @@ require_once 'transactions.php';
                     <td><?php echo $transaction["amount"]; ?> lei</td>
                     <td><?php echo $transaction["description"]; ?></td>
                     <td><?php echo $transaction["merchant"]; ?></td>
+                    <td><?php echo daysSinceTransaction($transaction["date"]); ?></td>
                 </tr>
             <?php endforeach; ?>
         </tbody>
