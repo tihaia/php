@@ -3,7 +3,7 @@
 declare(strict_types=1);
 
 /**
- * Summary of calculateTotalAmount
+ * Вычисляет общую сумму транзакций.
  * @param array $transactions
  * @return float|int
  */
@@ -16,7 +16,7 @@ function calculateTotalAmount(array $transactions): float {
 };
 
 /**
- * Summary of findTransactionByDescription
+ * Ищет транзакции, содержащие заданную подстроку в описании.
  * @param array $transactions
  * @param string $descriptionPart
  * @return array
@@ -34,7 +34,7 @@ function findTransactionByDescription(array $transactions, string $descriptionPa
 }
 
 /**
- * Summary of findTransactionById
+ * Ищет транзакцию по её идентификатору.
  * @param array $transactions
  * @param int $id
  */
@@ -48,7 +48,7 @@ function findTransactionById(array $transactions, int $id): ?array {
 }
 
 /**
- * Summary of daysSinceTransaction
+ * Вычисляет количество дней, прошедших с момента указанной даты транзакции.
  * @param DateTime $date
  * @return int
  */
@@ -58,7 +58,7 @@ function daysSinceTransaction(DateTime $date): int {
 }
 
 /**
- * Summary of addTransaction
+ * Добавляет новую транзакцию в глобальный массив транзакций.
  * @param int $id
  * @param string $date
  * @param float $amount
@@ -79,7 +79,7 @@ function addTransaction(int $id, string $date, float $amount, string $descriptio
 }
 
 /**
- * Summary of sortTransactionsByDate
+ * Сортирует массив транзакций по дате в порядке возрастания.
  * @param array $transactions
  * @return void
  */
@@ -90,7 +90,7 @@ function sortTransactionsByDate(array &$transactions) {
 }
 
 /**
- * Summary of sortTransactionsByAmount
+ * Сортирует массив транзакций по сумме в порядке убывания.
  * @param array $transactions
  * @return void
  */
