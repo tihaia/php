@@ -3,9 +3,10 @@
 declare(strict_types=1);
 
 /**
- * Вычисляет общую сумму транзакций.
- * @param array $transactions
- * @return float|int
+ * Подсчитывает общую сумму транзакций.
+ *
+ * @param array $transactions Массив транзакций, каждая из которых содержит ключ 'amount'.
+ * @return float Итоговая сумма.
  */
 function calculateTotalAmount(array $transactions): float {
     $total = 0;
@@ -16,10 +17,12 @@ function calculateTotalAmount(array $transactions): float {
 };
 
 /**
- * Ищет транзакции, содержащие заданную подстроку в описании.
- * @param array $transactions
- * @param string $descriptionPart
- * @return array
+ * Ищет транзакции по части описания.
+ *
+ * @param array $transactions Массив транзакций, каждая из которых содержит ключ 'description'.
+ * @param string $descriptionPart Часть строки, по которой осуществляется поиск.
+ * @return array Найденные транзакции, содержащие указанную подстроку в описании.
+ * @throws InvalidArgumentException Если у транзакции нет ключа 'description'.
  */
 function findTransactionByDescription(array $transactions, string $descriptionPart): array {
     $foundTransactions = [];
@@ -35,8 +38,11 @@ function findTransactionByDescription(array $transactions, string $descriptionPa
 
 /**
  * Ищет транзакцию по её идентификатору.
- * @param array $transactions
- * @param int $id
+ *
+ * @param array $transactions Массив транзакций, каждая из которых содержит ключ 'id'.
+ * @param int $id Идентификатор искомой транзакции.
+ * @return array|null Найденная транзакция или null, если не найдена.
+ * @throws InvalidArgumentException Если у транзакции нет ключа 'id' или он не является числом.
  */
 function findTransactionById(array $transactions, int $id): ?array {
     foreach ($transactions as $transaction) {
@@ -48,9 +54,10 @@ function findTransactionById(array $transactions, int $id): ?array {
 }
 
 /**
- * Вычисляет количество дней, прошедших с момента указанной даты транзакции.
- * @param DateTime $date
- * @return int
+ * Возвращает количество дней, прошедших с момента транзакции.
+ *
+ * @param DateTime $date Дата транзакции.
+ * @return int Количество дней с момента транзакции до текущей даты.
  */
 function daysSinceTransaction(DateTime $date): int {
     $currentDate = new DateTime();
@@ -58,13 +65,13 @@ function daysSinceTransaction(DateTime $date): int {
 }
 
 /**
- * Добавляет новую транзакцию в глобальный массив транзакций.
- * @param int $id
- * @param string $date
- * @param float $amount
- * @param string $description
- * @param string $merchant
- * @return void
+ * Добавляет новую транзакцию в глобальный массив $transactions.
+ *
+ * @param int $id Уникальный идентификатор транзакции.
+ * @param string $date Дата транзакции в формате 'YYYY-MM-DD'.
+ * @param float $amount Сумма транзакции.
+ * @param string $description Описание транзакции.
+ * @param string $merchant Продавец или получатель платежа.
  */
 function addTransaction(int $id, string $date, float $amount, string $description, string $merchant): void {
     global $transactions;
@@ -79,8 +86,9 @@ function addTransaction(int $id, string $date, float $amount, string $descriptio
 }
 
 /**
- * Сортирует массив транзакций по дате в порядке возрастания.
- * @param array $transactions
+ * Сортирует массив транзакций по дате (от старых к новым).
+ *
+ * @param array $transactions Массив транзакций (по ссылке).
  * @return void
  */
 function sortTransactionsByDate(array &$transactions) {
@@ -90,8 +98,9 @@ function sortTransactionsByDate(array &$transactions) {
 }
 
 /**
- * Сортирует массив транзакций по сумме в порядке убывания.
- * @param array $transactions
+ * Сортирует массив транзакций по убыванию суммы.
+ *
+ * @param array $transactions Массив транзакций (по ссылке).
  * @return void
  */
 function sortTransactionsByAmount(array &$transactions): void {
