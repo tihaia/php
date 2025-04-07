@@ -17,7 +17,19 @@
 1. Создаю корневую директорию проекта "todo-app".
 2. Организую файловую структуру проекта.
    ```
-
+todo-app/
+├── public/
+│   ├── index.php                  
+│   ├── handlers/
+│   │   └── handle_task_form.php  
+│   └── task/
+│       ├── create.php            
+│       └── index.php           
+├── src/
+│   └── helpers.php               
+├── storage/
+│   └── tasks.json              
+└── README.md
    ```
 ### Задание 2. Создание формы добавления задачи
 1. Создаю HTML-форму для добавления рецепта.
