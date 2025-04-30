@@ -1,32 +1,34 @@
 <?php
 
 /**
- * Получение ошибок валидации из сессии
+ * Возвращает ошибки валидации из сессии.
  *
  * @return array<string, string>
  */
 function getErrors(): array {
+    /** @var array<string, string> $errors */
     $errors = $_SESSION['errors'] ?? [];
     unset($_SESSION['errors']);
     return $errors;
 }
 
 /**
- * Получение ранее введённых данных из сессии (в случае ошибок)
+ * Возвращает ранее введённые данные из сессии.
  *
  * @return array<string, mixed>
  */
 function getOldInput(): array {
+    /** @var array<string, mixed> $old */
     $old = $_SESSION['old'] ?? [];
     unset($_SESSION['old']);
     return $old;
 }
 
 /**
- * Установка атрибута selected для <option>
+ * Устанавливает атрибут selected для выбранной опции.
  *
  * @param string $value Значение из формы
- * @param string $expected Значение опции
+ * @param string $expected Ожидаемое значение
  * @return string
  */
 function selected(string $value, string $expected): string {
