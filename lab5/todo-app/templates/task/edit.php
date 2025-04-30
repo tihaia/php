@@ -1,17 +1,30 @@
 <?php
+/**
+ * Шаблон формы редактирования задачи.
+ * Загружает задачу из базы данных и выводит форму редактирования.
+ */
+
 require_once __DIR__ . '/../../src/db.php';
 require_once __DIR__ . '/../../src/helpers.php';
 
 session_start();
 
+/** @var PDO $pdo Подключение к базе данных */
 $pdo = getPDO();
+
+/** @var string|null $id Идентификатор задачи из запроса */
 $id = $_GET['id'] ?? null;
 
 $stmt = $pdo->prepare("SELECT * FROM tasks WHERE id = :id");
 $stmt->execute(['id' => $id]);
+
+/** @var array<string, mixed>|false $task Данные задачи */
 $task = $stmt->fetch(PDO::FETCH_ASSOC);
 
+/** @var array<string, mixed> $old Ранее введённые значения */
 $old = getOldInput();
+
+/** @var array<string, string> $errors Ошибки валидации */
 $errors = getErrors();
 
 if (!$task) {
@@ -40,6 +53,7 @@ if (!$task) {
     <label for="tags">Теги:</label>
     <select name="tags[]" multiple>
       <?php
+        /** @var array<int, string> $tags Массив тегов из задачи */
         $tags = json_decode($task['tags'], true) ?? [];
         foreach (['срочно', 'важно', 'дом', 'работа'] as $tag):
       ?>
