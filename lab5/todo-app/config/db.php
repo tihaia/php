@@ -1,8 +1,23 @@
 <?php
-// Конфигурация подключения к базе данных
+/**
+ * Конфигурация базы данных.
+ */
+
+/** @var string $host */
+$host = 'localhost';
+
+/** @var string $dbname */
+$dbname = 'todo_app';
+
+/** @var string $user */
+$user = 'root';
+
+/** @var string $password */
+$password = '';
+
 return [
-    'host' => 'localhost',
-    'dbname' => 'todo_app',
-    'user' => 'root',
-    'password' => '', // для XAMPP пароль по умолчанию пустой
+    'host' => $host,
+    'dbname' => $dbname,
+    'user' => $user,
+    'password' => $password,
 ];
