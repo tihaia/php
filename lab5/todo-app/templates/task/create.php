@@ -1,7 +1,15 @@
 <?php
+/**
+ * Шаблон формы добавления новой задачи.
+ * Выводит поля формы и сообщения об ошибках.
+ */
+
 session_start();
 
+/** @var array<string, mixed> $old Ранее введённые значения формы */
 $old = getOldInput();
+
+/** @var array<string, string> $errors Ошибки валидации формы */
 $errors = getErrors();
 ?>
 
