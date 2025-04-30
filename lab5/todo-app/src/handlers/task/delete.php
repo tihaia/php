@@ -1,18 +1,15 @@
 <?php
-require_once __DIR__ . '/../../../db.php';
-
-/**
- * Обработчик удаления задачи по ID.
- */
-
-$pdo = getPDO();
+require_once __DIR__ . '/../../../config/db.php';
+require_once __DIR__ . '/../../../src/db.php';
 
 $id = $_GET['id'] ?? null;
-
-if ($id && is_numeric($id)) {
-    $stmt = $pdo->prepare("DELETE FROM tasks WHERE id = ?");
-    $stmt->execute([$id]);
+if (!$id) {
+    exit('ID не указан');
 }
 
-header("Location: /");
+$pdo = getPDO();
+$stmt = $pdo->prepare("DELETE FROM tasks WHERE id = :id");
+$stmt->execute(['id' => $id]);
+
+header('Location: /todo-app/public/index.php');
 exit;

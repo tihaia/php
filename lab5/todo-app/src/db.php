@@ -1,10 +1,12 @@
 <?php
+
 /**
- * Подключение к базе данных через PDO
+ * Возвращает подключение к базе данных
  *
- * @return PDO объект подключения к базе данных
+ * @return PDO
  */
-function getPDO(): PDO {
+function getPDO(): PDO
+{
     $config = require __DIR__ . '/../config/db.php';
 
     $dsn = "mysql:host={$config['host']};dbname={$config['dbname']};charset=utf8mb4";
@@ -12,9 +14,8 @@ function getPDO(): PDO {
     try {
         return new PDO($dsn, $config['user'], $config['password'], [
             PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
-            PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC,
         ]);
     } catch (PDOException $e) {
-        die("Ошибка подключения к базе данных: " . $e->getMessage());
+        die('Ошибка подключения к базе данных: ' . $e->getMessage());
     }
 }
